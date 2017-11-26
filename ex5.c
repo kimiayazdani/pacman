@@ -9,9 +9,8 @@ struct ghost{
 		int endX;
 		int endY;
 	};
-
-int main(){
-	struct pacman{
+	struct pacmanS{
+		//dir -> 1: up, 2: right, 3: down, 4: left
 		int dir;
 		int heart;
 		int strtX;
@@ -19,10 +18,11 @@ int main(){
 		int endX;
 		int endY;
 	};
+int main(){
+	struct pacmanS pacman;
 	int r, c;
 	scanf("%d %d", &r, &c);
 	int i;
-	//1: up, 2: right, 3: down, 4: left
 	int ** map = malloc(r * sizeof(int *));
 	for(i = 0; i < r; i++)
 	{
@@ -40,12 +40,12 @@ int main(){
 	}
 	int timeM;
 	int gameTime;
-	int gameScore; //?
+	int gameScore;
 	scanf("%d:%d %d", &timeM, &gameTime, &gameScore);
 	gameTime += timeM * 60;
 	//hatkar khorako tadafoE tahhajomiiiii :)
 	struct ghost ghosts[4]; 
-	scanf("pacman: %d %d (%d,%d) (%d,%d)", &pacman.dir, &pacman.heart, &pacman.strtX, &pacman.strtY, &pacman.endX, &pacman.endY);
+	scanf("%*s %d %d (%d,%d) (%d,%d)", &pacman.dir, &pacman.heart, &pacman.strtX, &pacman.strtY, &pacman.endX, &pacman.endY);
 	for(i = 0; i < 4; i++)
 	{
 		scanf("%*s %d %d", &ghosts[i].dir, &ghosts[i].agrsv);
@@ -58,5 +58,35 @@ int main(){
 			scanf("%d", &ghosts[i].defTime);
 		}
 		scanf("(%d,%d) (%d,%d)", &ghosts[i].strtX, &ghosts[i].strtY, &ghosts[i].endX, &ghosts[i].endY);
+	}
+	int tempendy = pacman.endY;
+	int tempendx = pacman.endX;
+	//divar vhekc kon;
+	if(pacman.dir == 1)
+		if(pacman.endX == 0)
+			pacman.endX = r - 1;
+		else
+			--pacman.endX;
+	else
+		if(pacman.dir == 2)
+			if(pacman.endY == c - 1)
+				pacman.endY = 0;
+			else
+				++pacman.endY;
+		else
+			if(pacman.dir == 3)
+				if(pacman.endX == r - 1)
+					pacman.endX = 0;
+				else
+					++pacman.endX;
+			else
+				if(pacman.endY == 0)
+					pacman.endY = c - 1;
+				else
+					--pacman.endY;
+	if(map[pacman.endX][pacman.endY] == '#')
+	{
+		pacman.endX = tempendx;
+		pacman.endY = etmpendY;
 	}
 }
