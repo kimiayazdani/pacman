@@ -18,8 +18,9 @@ struct ghost{
 		int endX;
 		int endY;
 	};
-int main(){
 	struct pacmanS pacman;
+int main(){
+	int leftFood = 0;
 	int r, c;
 	scanf("%d %d", &r, &c);
 	int i;
@@ -36,6 +37,8 @@ int main(){
 		for(j = 0; j < c; j++)
 		{
 			map[i][j] = line[j]; 
+			if(map[i][j] == 'O' || map[i][j] == '*')
+				leftFood++;
 		}
 	}
 	int timeM;
@@ -43,9 +46,9 @@ int main(){
 	int gameScore;
 	scanf("%d:%d %d", &timeM, &gameTime, &gameScore);
 	gameTime += timeM * 60;
-	//hatkar khorako tadafoE tahhajomiiiii :)
 	struct ghost ghosts[4]; 
 	scanf("%*s %d %d (%d,%d) (%d,%d)", &pacman.dir, &pacman.heart, &pacman.strtX, &pacman.strtY, &pacman.endX, &pacman.endY);
+//	printf("pacman o gereftam\n");
 	for(i = 0; i < 4; i++)
 	{
 		scanf("%*s %d %d", &ghosts[i].dir, &ghosts[i].agrsv);
@@ -55,38 +58,97 @@ int main(){
 		}
 		else
 		{
-			scanf("%d", &ghosts[i].defTime);
+			scanf("%d ", &ghosts[i].defTime);
 		}
 		scanf("(%d,%d) (%d,%d)", &ghosts[i].strtX, &ghosts[i].strtY, &ghosts[i].endX, &ghosts[i].endY);
+//		printf("ruh e %d\n", i + 1);
 	}
-	int tempendy = pacman.endY;
-	int tempendx = pacman.endX;
-	//divar vhekc kon;
+	int mve = nextMove(r, c, map, pacman.endX, pacman.endY);
+	pacman.endX = mve / 1000;
+	pacman.endY = mve % 1000;
+	if(map[pacman.endX][pacman.endY] == 'O')
+	{
+		for(i = 0; i < 4; i++)
+		{
+			if(pacman.endX == ghosts[i].endX && pacman.endY == ghosts[i].endY)
+			{	
+				gameScore += 50;
+			}
+		}
+		--leftFood;
+	}
+	else
+	{
+		if(map[pacman.endX][pacman.endY] == '^')
+			gameScore += 20;
+		if(map[pacman.endX][pacman.endY] == '*')
+		{
+			++gameScore;
+			--leftFood;
+		}	
+		for(i = 0; i < 4; i++)
+		{
+			if(pacman.endX == ghosts[i].endX && pacman.endY == ghosts[i].endY)
+			{	
+				if(ghosts[i].agrsv)
+				{
+					--pacman.heart;
+					pacman.endX = pacman.strtX;
+					pacman.endY = pacman.strtY;
+				}
+				else
+				{
+					gameScore += 50;
+				}
+			}
+		}	
+	}
+	printf("(%d,%d)\n%d\n", pacman.endX, pacman.endY, gameScore);
+	if(leftFood)
+		printf("No");
+	else
+		printf("Yes");
+	
+}
+int nextMove(int r, int c, int ** map, int x, int y){
+	int tempendy = y;
+	int tempendx = x;
 	if(pacman.dir == 1)
-		if(pacman.endX == 0)
-			pacman.endX = r - 1;
+		if(x == 0)
+			x = r - 1;
 		else
-			--pacman.endX;
+			--x;
 	else
 		if(pacman.dir == 2)
-			if(pacman.endY == c - 1)
-				pacman.endY = 0;
+			if(y == c - 1)
+				y = 0;
 			else
-				++pacman.endY;
+				++y;
 		else
 			if(pacman.dir == 3)
-				if(pacman.endX == r - 1)
-					pacman.endX = 0;
+				if(x == r - 1)
+					x = 0;
 				else
-					++pacman.endX;
+					++x;
 			else
-				if(pacman.endY == 0)
-					pacman.endY = c - 1;
+				if(y == 0)
+					y = c - 1;
 				else
-					--pacman.endY;
-	if(map[pacman.endX][pacman.endY] == '#')
+					--y;
+	if(map[x][y] == '#')
 	{
-		pacman.endX = tempendx;
-		pacman.endY = etmpendY;
-	}
+		x = tempendx;
+		y = tempendy;
+	}	
+	return x * 1000 + y;
 }
+/*
+5 10
+#___**#**#
+###**##*##
+____****O_
+_##_^*#___
+#_____#_*#
+01:10 27
+pacman: 1 3 (2,0) (4,5)
+*/
