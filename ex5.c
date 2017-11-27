@@ -1,4 +1,5 @@
 #include <stdio.h>
+int nextMove(int, int, int **, int, int);
 struct ghost{
 	//0: Blinky, 1: Pinky, 2:Clyde, 3:Inky
 		int dir;
@@ -48,10 +49,9 @@ int main(){
 	gameTime += timeM * 60;
 	struct ghost ghosts[4]; 
 	scanf("%*s %d %d (%d,%d) (%d,%d)", &pacman.dir, &pacman.heart, &pacman.strtX, &pacman.strtY, &pacman.endX, &pacman.endY);
-//	printf("pacman o gereftam\n");
 	for(i = 0; i < 4; i++)
 	{
-		scanf("%*s %d %d", &ghosts[i].dir, &ghosts[i].agrsv);
+		scanf("%*s %d %d ", &ghosts[i].dir, &ghosts[i].agrsv);
 		if(ghosts[i].agrsv)
 		{
 			ghosts[i].defTime = 0;
@@ -60,8 +60,7 @@ int main(){
 		{
 			scanf("%d ", &ghosts[i].defTime);
 		}
-		scanf("(%d,%d) (%d,%d)", &ghosts[i].strtX, &ghosts[i].strtY, &ghosts[i].endX, &ghosts[i].endY);
-//		printf("ruh e %d\n", i + 1);
+		scanf("(%d,%d) (%d,%d)\n", &ghosts[i].strtX, &ghosts[i].strtY, &ghosts[i].endX, &ghosts[i].endY);
 	}
 	int mve = nextMove(r, c, map, pacman.endX, pacman.endY);
 	pacman.endX = mve / 1000;
@@ -79,6 +78,7 @@ int main(){
 	}
 	else
 	{
+		int eaten = 0;
 		if(map[pacman.endX][pacman.endY] == '^')
 			gameScore += 20;
 		if(map[pacman.endX][pacman.endY] == '*')
@@ -93,8 +93,7 @@ int main(){
 				if(ghosts[i].agrsv)
 				{
 					--pacman.heart;
-					pacman.endX = pacman.strtX;
-					pacman.endY = pacman.strtY;
+					eaten = 1;
 				}
 				else
 				{
@@ -102,6 +101,11 @@ int main(){
 				}
 			}
 		}	
+		if(eaten)
+		{
+			pacman.endX = pacman.strtX;
+			pacman.endY = pacman.strtY;
+		}
 	}
 	printf("(%d,%d)\n%d\n", pacman.endX, pacman.endY, gameScore);
 	if(leftFood)
