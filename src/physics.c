@@ -262,5 +262,6 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
             else
                 return pacman->dir;
         }
+        
     }
 }

@@ -85,12 +85,43 @@ void checkEatables(Map* map, Game* outGame, Pacman* outPacman, Ghost* outGhosts)
 
 void checkGhostCollision(Pacman* outPacman, Ghost* outGhost) {
     // fill me
+    int pacX = outPacman->x + 0.5;
+    int pacY = outPacman->y + 0.5;
+    int ghstX = outGhost->x + 0.5;
+    int ghstY = outGhost->y + 0.5;
+    if(pacX == ghstX && pacY == ghstY)
+    {
+        if(outGhost->blue)
+        {
+            outGhost->blue = false;
+            outGhost->x = outGhost->startX;
+            outGhost->y = outGhost->startY;
+        }
+        else
+        {
+            --outPacman->health;
+            outPacman->x = outPacman->startX;
+            outPacman->y = outPacman->startY;
+        }
+    }
 }
 
 bool isGameFinished(Game* game, Pacman* pacman) {
     // fill me
+    if(!pacman->health)
+        return 1;
+    if(!game->pineapples && !game->cheeses)
+        return 1;
+    return 0;
 }
 
 void checkGhostState(Ghost* ghost) {
     // fill me
+    if(ghost->blue)
+    {
+        if(ghost->blueCounterDown)
+            --ghost->blueCounterDown;
+        else
+            ghost->blue = false;
+    }
 }
