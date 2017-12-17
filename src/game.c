@@ -55,7 +55,32 @@ void initiateGame(char* filename, Map* outMap, Game* outGame, Pacman* outPacman,
 
 void checkEatables(Map* map, Game* outGame, Pacman* outPacman, Ghost* outGhosts) {
     // fill me
-
+    int pacX = outPacman->x + 0.5;
+    int pacY= outPacman->y + 0.5;
+    if(map->cells[pacX][pacY] == CELL_CHEESE)
+    {
+        map->cells[pacX][pacY] = CELL_EMPTY;
+        outGame->score += CHEESE_SCORE;
+        --outGame->cheeses;
+    }
+    if(map->cells[pacX][pacY] == CELL_CHERRY)
+    {
+        map->cells[pacX][pacY] = CELL_EMPTY;
+        outGame->score += CHERRY_SCORE;
+        --outGame->cherries;
+    }
+    if(map->cells[pacX][pacY] == CELL_PINEAPPLE)
+    {
+        map->cells[pacX][pacY] = CELL_EMPTY;
+        outGame->score += PINEAPPLE_SCORE;
+        --outGame->pineapples;
+        int i;
+        for(i = 0; i < 4; ++i)
+        {
+            outGhosts[i].blue = true;
+            outGhosts[i].blueCounterDown = BLUE_DURATION;
+        }
+    }
 }
 
 void checkGhostCollision(Pacman* outPacman, Ghost* outGhost) {
