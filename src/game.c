@@ -13,6 +13,7 @@ void initiateGame(char* filename, Map* outMap, Game* outGame, Pacman* outPacman,
     outGame->cheeses = 0;
     outGame->pineapples = 0;
     outGame->cherries = 0;
+    outPacman->speed = PACMAN_DEFAULT_SPEED;
     int i, j;
     for(i = 0; i < outMap->height; ++i)
     {
@@ -54,6 +55,7 @@ void initiateGame(char* filename, Map* outMap, Game* outGame, Pacman* outPacman,
 
 void checkEatables(Map* map, Game* outGame, Pacman* outPacman, Ghost* outGhosts) {
     // fill me
+
 }
 
 void checkGhostCollision(Pacman* outPacman, Ghost* outGhost) {

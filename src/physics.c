@@ -84,8 +84,183 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
     // fill me
     if(action & MOVE_ACTION_MASK)
     {
-        //age joloye pac divar bud bayad vaste
-        //age un vary ke gharar bud bere divar bud bayad unghad bere ta avalin jayi ke mitunest bepiche tu
-        
+        if(action == ACTION_LEFT)
+        {
+            if(pacman->x)
+            {
+                if (map->cells[(int) pacman->x - 1][(int) pacman->y] == '#')
+                {
+                    if(pacman->dir == DIR_LEFT)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_LEFT;
+            }
+            else
+            {
+                if(map->cells[map->width - 1][(int) pacman->y] == '#')
+                {
+                    if(pacman->dir == DIR_LEFT)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_LEFT;
+            }
+        }
+        if(action == ACTION_RIGHT)
+        {
+            if(pacman->x != map->width - 1)
+            {
+                if (map->cells[(int) pacman->x + 1][(int) pacman->y] == '#')
+                {
+                    if(pacman->dir == DIR_RIGHT)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_RIGHT;
+            }
+            else
+            {
+                if (map->cells[0][(int) pacman->y] == '#')
+                {
+                    if(pacman->dir == DIR_RIGHT)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_RIGHT;
+            }
+        }
+        if(action == ACTION_DOWN)
+        {
+            if(pacman->y != map->height - 1)
+            {
+                if (map->cells[(int) pacman->x][(int) pacman->y + 1] == '#')
+                {
+                    if(pacman->dir == DIR_DOWN)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_DOWN;
+            }
+            else
+            {
+                if (map->cells[(int) pacman->x][0] == '#')
+                {
+                    if(pacman->dir == DIR_DOWN)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_DOWN;
+            }
+        }
+        if(action == ACTION_UP)
+        {
+            if(pacman->y)
+            {
+                if (map->cells[(int) pacman->x][(int) pacman->y - 1] == '#')
+                {
+                    if(pacman->dir == DIR_UP)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_UP;
+            }
+            else
+            {
+                if (map->cells[(int) pacman->x][map->height - 1] == '#')
+                {
+                    if(pacman->dir == DIR_UP)
+                        return DIR_NONE;
+                    else
+                        return pacman->dir;
+                }
+                else
+                    return DIR_UP;
+            }
+        }
+    }
+    if(pacman->dir == DIR_NONE)
+        return DIR_NONE;
+    if (pacman->dir == DIR_UP)
+    {
+        if(pacman->y)
+        {
+            if (map->cells[(int) pacman->x][(int) pacman->y - 1] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+        else
+        {
+            if (map->cells[(int) pacman->x][map->height - 1] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+    }
+    if(pacman->dir == DIR_DOWN)
+    {
+        if(pacman->y != map->height - 1)
+        {
+            if (map->cells[(int) pacman->x][(int) pacman->y + 1] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+        else
+        {
+            if (map->cells[(int) pacman->x][0] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+    }
+    if(pacman->dir == DIR_RIGHT)
+    {
+        if(pacman->x != map->width - 1)
+        {
+            if (map->cells[(int) pacman->x + 1][(int) pacman->y] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+        else
+        {
+            if (map->cells[0][(int) pacman->y] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+    }
+    if(pacman->dir == DIR_LEFT)
+    {
+        if(pacman->x)
+        {
+            if (map->cells[(int) pacman->x - 1][(int) pacman->y] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
+        else
+        {
+            if(map->cells[map->width - 1][(int) pacman->y] == '#')
+                return DIR_NONE;
+            else
+                return pacman->dir;
+        }
     }
 }
