@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/game.c
+stdio.h
+-
+game.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/game.h
+map.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/map.h
+stdbool.h
+-
+physics.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/physics.h
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/game.h
+stdbool.h
+-
+map.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/map.h
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/input.h
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/map.h
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/physics.c
+physics.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/physics.h
+game.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/game.h
+map.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/map.h
+stdlib.h
+-
+
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/physics.h
+game.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/game.h
+input.h
+/cygdrive/c/Users/Asus pc/Desktop/pacman/src/input.h
+
