@@ -92,8 +92,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_LEFT)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_LEFT;
@@ -104,8 +104,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_LEFT)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_LEFT;
@@ -119,8 +119,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_RIGHT)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_RIGHT;
@@ -131,8 +131,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_RIGHT)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_RIGHT;
@@ -146,8 +146,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_DOWN)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_DOWN;
@@ -158,8 +158,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_DOWN)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_DOWN;
@@ -173,8 +173,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_UP)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_UP;
@@ -185,8 +185,8 @@ Direction decidePacman(const Map* map, Pacman* pacman, Action action) {
                 {
                     if(pacman->dir == DIR_UP)
                         return DIR_NONE;
-                    else
-                        return pacman->dir;
+//                    else
+//                        return pacman->dir;
                 }
                 else
                     return DIR_UP;

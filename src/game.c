@@ -32,6 +32,7 @@ void initiateGame(char* filename, Map* outMap, Game* outGame, Pacman* outPacman,
     }
     fscanf(fptr, "%d", &outGame->score);
     fscanf(fptr, "%*s %d %d (%d,%d) (%lf,%lf)", &outPacman->dir, &outPacman->health, &outPacman->startX, &outPacman->startY, &outPacman->x, &outPacman->y);
+//    outPacman->health += 2;
     for(i = 0; i < 4; i++)
     {
         outGhosts[i].type = i;
