@@ -14,7 +14,7 @@ typedef enum {
 typedef enum { BLINKY, PINKY, CLYDE, INKY } GhostType;
 
 #define MAX_GHOST_COUNT 4
-
+#define MINUMAL_DISTANCE 1
 #define CHEESE_SCORE 10
 #define CHERRY_SCORE 100
 #define PINEAPPLE_SCORE 20
@@ -24,6 +24,11 @@ typedef struct {
     int cheeses, cherries, pineapples;
     int ghosts;
 } Game;
+
+typedef struct{
+    int x;
+    int y;
+} coord;
 
 typedef struct {
     double x, y;
@@ -35,6 +40,9 @@ typedef struct {
 
 #define CYCLES_PER_SEC 60
 #define BLUE_DURATION 5*CYCLES_PER_SEC
+typedef enum {
+    CHASE = 1,
+    SCATTER = 2 } GhostState;
 
 typedef struct {
     double x, y;
@@ -42,7 +50,9 @@ typedef struct {
     Direction dir;
     GhostType type;
     bool blue;
+    GhostState state;
     unsigned long long blueCounterDown;
+    unsigned long long stateCounterDown;
     double speed;
 } Ghost;
 
